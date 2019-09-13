@@ -1,0 +1,86 @@
+﻿  @model FashionWorld.Models.ProductsListViewModel
+@{
+    ViewBag.Title = "Product_Detail";
+    Algos algos = new Algos();
+    int count = 0;
+}
+
+<div class="pro-detail-data-container">
+    <div class="pro-detail-data-box">
+        <div class="pro-detail-data-side-img">
+            @{ 
+                string[] img =  algos.image(Model.productMain.image.ToString());
+            }
+            <img src="@img[0]" id="pro-side-img-1" onclick="setProImage('@img[0]','1')"/><br/>
+            <img src="@img[1]" id="pro-side-img-2" onclick="setProImage('@img[1]','2')" /><br />
+            <img src="@img[2]" id="pro-side-img-3"  onclick="setProImage('@img[2]','3')"/><br />
+            <img src="@img[3]" id="pro-side-img-4" onclick="setProImage('@img[3]','4')"/><br />
+            <img src="@img[4]" id="pro-side-img-5" onclick="setProImage('@img[4]','5')"/>
+        </div>
+        <div class="pro-detail-data-big-img">
+            <img src="@img[0]" id="pro-detail-data-big-image"/>
+        </div>
+        <div class="pro-detail-data">
+            <a>@Model.productMain.product_name</a><br /><br />
+            <a>Price: &nbsp;&nbsp;<i class="fa fa-rupee"></i>&nbsp;@Model.productMain.product_price</a><br /><br />
+            <a> Brand : @Model.productMain.brand</a><br /><br />
+
+
+            <button class="btn btn-outline-primary" style="width: 80%">Add To Cart</button>
+            <button class="btn btn-outline-primary">Add To Wishlist</button><br /><br />
+
+            <a>@Model.productMain.description</a>
+        </div>
+    </div>
+    <br/><br/><br/>
+    <div class="pro-detail-data-relates">
+        <div class="pro-detail-data-relates-list">
+                @foreach (var item in Model.productRelated)
+                {
+                    <div class="product-box">
+                <div class="product-box-img">
+                    @{
+                        string st = item.image.ToString();
+                        string[] img1 = algos.image(st);
+                    }
+                    <div>
+                        <a onclick="product_detail(@item.ID)">
+                            <img id="pic1" src="@img1[0]" alt="@img1[1]" />
+                            <img id="pic2" src="@img1[2]" alt="@img1[4]" />
+                        </a>
+                    </div>
+                    <div class="product-box-social">
+                        <a><i class="fa fa-shopping-bag" data-toggle="tooltip" title="Wishlist"></i></a>
+                        <a><i class="fa fa-shopping-cart" data-toggle="tooltip" title="Add to cart"></i></a>
+                    </div>
+                </div>
+            <div class="product-box-contents">
+                <h3 class="pro-name">@item.product_name</h3>
+                <div class="pro-price">
+                    <i class="fa fa-rupee" ></i>&nbsp;@item.product_price
+                    <span><i class="fa fa-rupee"></i>&nbsp;@item.product_price</span>
+                </div>
+                <ul class="rating">
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star disable"></li>
+                    <li class="fa fa-star disable"></li>
+                </ul>
+            </div>
+        </div>
+                    count++;
+                    if (count >= 10)
+                    {
+                        break;
+                    }
+                }
+        </div>
+    </div>
+    <div style="display:none;">
+        <form id="frm_pro_id_get" autocomplete="off" action="/Shop/Product_Detail" method="get">
+            <input type="text" id="frm_pro_id_get_text" name="id"/>
+            <input type="submit" />
+        </form>
+    </div>
+</div>

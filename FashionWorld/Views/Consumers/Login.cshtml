@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<div class="login-container container-fluid" style="color:#ffffff;background-color:#5681f1;padding-left:15%;">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <h2 style="margin-left: 35%;color:#0026ff;font-weight:bolder;">Login</h2>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("UserName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="uid" placeholder="Email/Mobile"/>
+                @Html.ValidationMessage("Enter UserName", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Password", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="password" placeholder="Password" class="form-control" name="pass" />
+                @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" class="btn btn-primary"  value="Login" id="btn-login"/>
+        </div>
+    }
+</div>
+

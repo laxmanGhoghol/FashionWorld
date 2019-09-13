@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FashionWorldModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="addresses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CustID" Type="int" />
+          <Property Name="Add_Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsDefault" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Pincode" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="del_Address" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mobile" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="UPass" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="IsVerified" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CustID" Type="int" Nullable="false" />
+          <Property Name="ProID" Type="int" Nullable="false" />
+          <Property Name="PayID" Type="int" />
+          <Property Name="Order_Date" Type="date" Nullable="false" />
+          <Property Name="IsSuccess" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="PayID" Type="int" Nullable="false" />
+          <Property Name="OrdID" Type="int" Nullable="false" />
+          <Property Name="PayType" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Price" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="PayDate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="product_date" Type="varchar(max)" />
+          <Property Name="product_name" Type="varchar(max)" />
+          <Property Name="product_category_tree" Type="varchar(max)" />
+          <Property Name="product_price" Type="varchar(max)" />
+          <Property Name="image" Type="varchar(max)" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="brand" Type="varchar(max)" />
+          <Property Name="product_specifications" Type="varchar(max)" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
+          <Property Name="Size_Small" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Size_Medium" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Size_Large" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__addresses__CustI__6FE99F9F">
+          <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+          <End Role="addresses" Type="Self.addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="addresses">
+              <PropertyRef Name="CustID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__CustID__71D1E811">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="CustID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__PayID__74AE54BC">
+          <End Role="payments" Type="Self.payments" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="PayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__ProID__778AC167">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__payments__OrdID__75A278F5">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="OrdID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stock__PID__787EE5A0">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="stock" Type="Self.stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FashionWorldModelStoreContainer">
+          <EntitySet Name="addresses" EntityType="Self.addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock" EntityType="Self.stock" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__addresses__CustI__6FE99F9F" Association="Self.FK__addresses__CustI__6FE99F9F">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="addresses" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__CustID__71D1E811" Association="Self.FK__orders__CustID__71D1E811">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__PayID__74AE54BC" Association="Self.FK__orders__PayID__74AE54BC">
+            <End Role="payments" EntitySet="payments" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__ProID__778AC167" Association="Self.FK__orders__ProID__778AC167">
+            <End Role="products" EntitySet="products" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payments__OrdID__75A278F5" Association="Self.FK__payments__OrdID__75A278F5">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stock__PID__787EE5A0" Association="Self.FK__stock__PID__787EE5A0">
+            <End Role="products" EntitySet="products" />
+            <End Role="stock" EntitySet="stock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FashionWorldModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="addresses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CustID" Type="Int32" />
+          <Property Name="Add_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsDefault" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pincode" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="del_Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="Self.FK__addresses__CustI__6FE99F9F" FromRole="addresses" ToRole="customers" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="UPass" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsVerified" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="addresses" Relationship="Self.FK__addresses__CustI__6FE99F9F" FromRole="customers" ToRole="addresses" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__CustID__71D1E811" FromRole="customers" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CustID" Type="Int32" Nullable="false" />
+          <Property Name="ProID" Type="Int32" Nullable="false" />
+          <Property Name="PayID" Type="Int32" />
+          <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsSuccess" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="Self.FK__orders__CustID__71D1E811" FromRole="orders" ToRole="customers" />
+          <NavigationProperty Name="payments" Relationship="Self.FK__orders__PayID__74AE54BC" FromRole="orders" ToRole="payments" />
+          <NavigationProperty Name="products" Relationship="Self.FK__orders__ProID__778AC167" FromRole="orders" ToRole="products" />
+          <NavigationProperty Name="payments1" Relationship="Self.FK__payments__OrdID__75A278F5" FromRole="orders" ToRole="payments" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PayID" Type="Int32" Nullable="false" />
+          <Property Name="OrdID" Type="Int32" Nullable="false" />
+          <Property Name="PayType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="PayDate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__PayID__74AE54BC" FromRole="payments" ToRole="orders" />
+          <NavigationProperty Name="orders1" Relationship="Self.FK__payments__OrdID__75A278F5" FromRole="payments" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="product_date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="product_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="product_category_tree" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="product_price" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="product_specifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__ProID__778AC167" FromRole="products" ToRole="orders" />
+          <NavigationProperty Name="stock" Relationship="Self.FK__stock__PID__787EE5A0" FromRole="products" ToRole="stock" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PID" Type="Int32" Nullable="false" />
+          <Property Name="Size_Small" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Size_Medium" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Size_Large" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.FK__stock__PID__787EE5A0" FromRole="stock" ToRole="products" />
+        </EntityType>
+        <Association Name="FK__addresses__CustI__6FE99F9F">
+          <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+          <End Role="addresses" Type="Self.addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="addresses">
+              <PropertyRef Name="CustID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__CustID__71D1E811">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="CustID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__PayID__74AE54BC">
+          <End Role="payments" Type="Self.payments" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="PayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__ProID__778AC167">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__payments__OrdID__75A278F5">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="OrdID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stock__PID__787EE5A0">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="stock" Type="Self.stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FashionWorldEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="addresses" EntityType="Self.addresses" />
+          <EntitySet Name="customers" EntityType="Self.customers" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="payments" EntityType="Self.payments" />
+          <EntitySet Name="products" EntityType="Self.products" />
+          <EntitySet Name="stock" EntityType="Self.stock" />
+          <AssociationSet Name="FK__addresses__CustI__6FE99F9F" Association="Self.FK__addresses__CustI__6FE99F9F">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="addresses" EntitySet="addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__CustID__71D1E811" Association="Self.FK__orders__CustID__71D1E811">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__PayID__74AE54BC" Association="Self.FK__orders__PayID__74AE54BC">
+            <End Role="payments" EntitySet="payments" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__ProID__778AC167" Association="Self.FK__orders__ProID__778AC167">
+            <End Role="products" EntitySet="products" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payments__OrdID__75A278F5" Association="Self.FK__payments__OrdID__75A278F5">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stock__PID__787EE5A0" Association="Self.FK__stock__PID__787EE5A0">
+            <End Role="products" EntitySet="products" />
+            <End Role="stock" EntitySet="stock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FashionWorldModelStoreContainer" CdmEntityContainer="FashionWorldEntities">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="FashionWorldModel.addresses">
+              <MappingFragment StoreEntitySet="addresses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CustID" ColumnName="CustID" />
+                <ScalarProperty Name="Add_Type" ColumnName="Add_Type" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="del_Address" ColumnName="del_Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="FashionWorldModel.customers">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UPass" ColumnName="UPass" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="FashionWorldModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CustID" ColumnName="CustID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="PayID" ColumnName="PayID" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="IsSuccess" ColumnName="IsSuccess" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="FashionWorldModel.payments">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PayID" ColumnName="PayID" />
+                <ScalarProperty Name="OrdID" ColumnName="OrdID" />
+                <ScalarProperty Name="PayType" ColumnName="PayType" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="FashionWorldModel.products">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="product_date" ColumnName="product_date" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_category_tree" ColumnName="product_category_tree" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="product_specifications" ColumnName="product_specifications" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock">
+            <EntityTypeMapping TypeName="FashionWorldModel.stock">
+              <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Size_Small" ColumnName="Size_Small" />
+                <ScalarProperty Name="Size_Medium" ColumnName="Size_Medium" />
+                <ScalarProperty Name="Size_Large" ColumnName="Size_Large" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

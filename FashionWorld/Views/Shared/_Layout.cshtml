@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.mobile-1.4.5.min.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Site.js"></script>
+</head>
+<body>
+    <header>
+        <div class="head-top">
+            <div class="head-logo">
+                <button id="btn-side-menu-show" class="btn-use-main"><i class="fa fa-bars"></i></button>
+                <LogoText>@Html.ActionLink("FashioWorld", "Index", "Home")</LogoText>
+            </div>
+            <div class="head-search">
+                <input type="search" name="searchVal" class="input-use-text" />
+                <button class="btn-use-main" id="SearchSubmit"><i class="fa fa-search"></i></button>
+            </div>
+            <div class="head-top-nav">
+                <ul class="head-top-nav-big">
+                    <li class="fa fa-heart-o" id="wishlist"></li>
+                    <li class="fa fa-user-o" id="user"></li>
+                    <li class="fa fa-shopping-cart" id="cart"></li>
+
+                </ul>
+            </div>
+
+            <div class="head-side-menu">
+                <button id="btn-side-menu-hide"><i class="fa fa-close"></i></button>
+                <ul>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Mens's Fashion", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Women's Fashion", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Shop", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Your Orders", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Top Trending", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Account", "Index", "Home")</li>
+                    <li>@Html.ActionLink("WishList", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Cart", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Login/Logout", "Index", "Home")</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="head-links-men">
+            <button id="links-men" class="btn-use-text">@Html.ActionLink("Men", "Products", "Shop")</button>
+
+            <div class="head-links-data-men">
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts", type = "Men's Clothing" }, null)</li>
+                        <li>@Html.ActionLink("Casual Shirts", "Products", "Shop", new { id = "Casual Shirt", type = "Men's Clothing" }, null)</li>
+                        <li>@Html.ActionLink("Sweater and Sweet-shirts", "Products", "Shop", new { id = "sweaters", type = "Men's Clothing" }, null)</li>
+                        <li>@Html.ActionLink("Formal Shirts", "Products", "Shop", new { id = "Formal Shirts", type = "Men's Clothing" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts", type = "Men's Clothing" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts", type = "Men's Clothing" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts", type = "Men's Clothing" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="head-links-women">
+            <button id="links-women" class="btn-use-text">@Html.ActionLink("Women", "Index", "Shop")</button>
+            <div class="head-links-data-women">
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("Men", "Index", "Shop")</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <ul>
+                        <li class="head-links-data-title">Top Wear</li>
+
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                        <li>@Html.ActionLink("T-Shirts", "Products", "Shop", new { id = "T-Shirts" }, null)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <button class="btn-use-text" style="margin-right:3%;">@Html.ActionLink("Shopping", "Products", "Shop")</button>
+        <button class="btn-use-text">@Html.ActionLink("Trending", "Products", "Shop")</button>
+    </header>
+    <div class="container-fluid">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - FashionWorldd</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

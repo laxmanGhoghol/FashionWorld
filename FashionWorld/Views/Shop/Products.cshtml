@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FashionWorld.Models.products>
+@{
+    ViewBag.Title = "Products";
+    Algos algos = new Algos();
+    int count = 0;
+}
+<div class="product-list">
+    <div class="product-list-side-menu">
+    </div>
+    <div class="products-container">
+        @foreach (var item in Model)
+        {
+        <div class="product-box" onclick="product_detail(@item.ID)">
+            <div class="product-box-img">
+                @{
+                    string st = item.image.ToString();
+                    string[] img = algos.image(st);
+                }
+                <div>
+                    <img id="pic1" src="@img[0]" alt="@img[1]" />
+                    <img id="pic2" src="@img[2]" alt="@img[4]" />
+                </div>
+                <div class="product-box-social">
+                    <a><i class="fa fa-shopping-bag" data-toggle="tooltip" title="Wishlist"></i></a>
+                    <a><i class="fa fa-shopping-cart" data-toggle="tooltip" title="Add to cart"></i></a>
+                </div>
+            </div>
+            <div class="product-box-contents">
+                <h3 class="pro-name">@item.product_name</h3>
+                <div class="pro-price">
+                    <i class="fa fa-rupee" ></i>&nbsp;@item.product_price
+                    <span><i class="fa fa-rupee"></i>&nbsp;@item.product_price</span>
+                </div>
+                <ul class="rating">
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star"></li>
+                    <li class="fa fa-star disable"></li>
+                    <li class="fa fa-star disable"></li>
+                </ul>
+            </div>
+        </div>
+            count++;
+            if (count >= 11)
+            {
+                break;
+            }
+        }
+
+    </div>
+    <div style="display:none;">
+        <form id="frm_pro_id_get" autocomplete="off" action="/Shop/Product_Detail" method="get">
+            <input type="text" id="frm_pro_id_get_text" name="id" />
+            <input type="submit" />
+        </form>
+    </div>
+</div>
